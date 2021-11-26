@@ -1,0 +1,15 @@
+<!-- 
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.issueNo" cdkFocusInitial>Ok</button>
+</div> -->
+
+<h1 mat-dialog-title>Resolve Issue # {{data.issueNo}}</h1>
+<div mat-dialog-content>
+  <p>Are you sure you want to close the issue?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.issueNo" cdkFocusInitial>Ok</button>
+</div>

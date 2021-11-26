@@ -1,0 +1,28 @@
+<form class="issue-form" [formGroup]="issueForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Title</mat-label>
+        <input formControlName="title" matInput placeholder="Ex. Issue Title">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea formControlName="description" matInput placeholder="Ex. Description About Issue"></textarea>
+    </mat-form-field>
+
+    <mat-radio-group class="test" aria-label="Priority" formControlName="priority">
+        <mat-radio-button value="1">Low</mat-radio-button>
+        <mat-radio-button value="2">High</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+            <mat-option value="bug">Bug</mat-option>
+            <mat-option value="feature">Feature</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="example-button-row">
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button mat-raised-button type="button" (click)="formClose.emit()">Cancel</button>
+    </div>
+</form>
