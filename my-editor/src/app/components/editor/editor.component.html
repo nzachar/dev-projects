@@ -1,0 +1,12 @@
+  <div class="container">
+	<div class="content">
+		<form [formGroup]="form">
+			<div class="editor">
+				<ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+				</ngx-editor-menu>
+				<ngx-editor [editor]="editor" formControlName="editorContent">
+				</ngx-editor>
+			</div>
+		</form>
+	</div>
+</div>
