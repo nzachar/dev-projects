@@ -1,0 +1,22 @@
+<div class="card" *ngIf="user$ | async as user">
+    <img [src]="user.avatar_url" class="card-img-top" alt="{{user.name}} photo">
+    <div class="card-body">
+        <h5 class="card-title">{{user.name}}</h5>
+        <p class="card-text">{{user.bio}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item" title="Location">
+            <i class="bi-geo me-2"></i> {{user.location}}
+        </li>
+        <li class="list-group-item" title="Followers"><i class="bi-people me-2"></i>{{user.following}}
+        </li>
+    </ul>
+    <div class="card-body">
+        <ng-container *ngIf="user.twitter_username">
+            <a href="https://www.twitter.com/{{user.twitter_username}}" class="card-link">Twitter</a>
+        </ng-container>
+        <ng-container *ngIf="user.blog">
+            <a [href]="user.blog" class="card-link">Personal blog</a>
+        </ng-container>
+    </div>
+</div>
