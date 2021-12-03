@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "projects": {
+    "admin": {
+      "projectType": "library",
+      "root": "libs/admin",
+      "sourceRoot": "libs/admin/src",
+      "prefix": "packt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/admin"],
+          "options": {
+            "jestConfig": "libs/admin/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/admin/src/**/*.ts",
+              "libs/admin/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "poi": {
+      "projectType": "library",
+      "root": "libs/poi",
+      "sourceRoot": "libs/poi/src",
+      "prefix": "packt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/poi"],
+          "options": {
+            "jestConfig": "libs/poi/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/poi/src/**/*.ts",
+              "libs/poi/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "tour": {
+      "projectType": "application",
+      "root": "apps/tour",
+      "sourceRoot": "apps/tour/src",
+      "prefix": "packt",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/tour",
+            "index": "apps/tour/src/index.html",
+            "main": "apps/tour/src/main.ts",
+            "polyfills": "apps/tour/src/polyfills.ts",
+            "tsConfig": "apps/tour/tsconfig.app.json",
+            "assets": ["apps/tour/src/favicon.ico", "apps/tour/src/assets"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "apps/tour/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/tour/src/environments/environment.ts",
+                  "with": "apps/tour/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "tour:build:production"
+            },
+            "development": {
+              "browserTarget": "tour:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "tour:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/tour/src/**/*.ts",
+              "apps/tour/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/tour"],
+          "options": {
+            "jestConfig": "apps/tour/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "tour-e2e": {
+      "root": "apps/tour-e2e",
+      "sourceRoot": "apps/tour-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/tour-e2e/cypress.json",
+            "devServerTarget": "tour:serve:development",
+            "tsConfig": "apps/tour-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tour:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/tour-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "visitor": {
+      "projectType": "library",
+      "root": "libs/visitor",
+      "sourceRoot": "libs/visitor/src",
+      "prefix": "packt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/visitor"],
+          "options": {
+            "jestConfig": "libs/visitor/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/visitor/src/**/*.ts",
+              "libs/visitor/src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "npm"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "css"
+    }
+  },
+  "defaultProject": "tour"
+}
