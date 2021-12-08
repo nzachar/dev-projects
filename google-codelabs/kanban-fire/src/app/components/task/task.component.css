@@ -1,0 +1,8 @@
+.item {
+    margin-bottom: 10px;
+}
+
+mat-icon {
+    float: right;
+    color: gray;
+}

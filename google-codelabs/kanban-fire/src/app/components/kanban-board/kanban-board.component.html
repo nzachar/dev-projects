@@ -1,0 +1,36 @@
+<div cdkDropListGroup cdkDropListOrientation="horizontal" class="container-wrapper">
+    <div class="container">
+        <h2>Backlog</h2>
+        <mat-card cdkDropList [cdkDropListData]="backlog" class="list" (cdkDropListDropped)="drop($event)">
+            <ng-container *ngIf="backlog.length === 0; else displayBacklogItems">
+                <p>Empty List</p>
+            </ng-container>
+            <ng-template #displayBacklogItems>
+                <app-task *ngFor="let item of backlog" [task]="item" (edit)="editTask('todo', $event)" cdkDrag></app-task>
+            </ng-template>
+        </mat-card>
+    </div>
+    <div class="container">
+        <h2>In Progress</h2>
+        <mat-card cdkDropList [cdkDropListData]="inProgress" class="list" (cdkDropListDropped)="drop($event)">
+            <ng-container *ngIf="inProgress.length === 0; else displayInProgressItems">
+                <p>Empty List</p>
+            </ng-container>
+            <ng-template #displayInProgressItems>
+                <app-task *ngFor="let item of inProgress" [task]="item" (edit)="editTask('inProgress', $event)" cdkDrag></app-task>
+            </ng-template>
+        </mat-card>
+    </div>
+    <div class="container">
+        <h2>Done</h2>
+        <mat-card cdkDropList [cdkDropListData]="done" class="list" (cdkDropListDropped)="drop($event)">
+            <ng-container *ngIf="done.length === 0; else displayDoneItems">
+                <p>Empty List</p>
+            </ng-container>
+            <ng-template #displayDoneItems>
+                <app-task *ngFor="let item of done" [task]="item" (edit)="editTask('done', $event)"  cdkDrag></app-task>
+            </ng-template>
+        </mat-card>
+
+    </div>
+</div>
