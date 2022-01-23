@@ -1,0 +1,34 @@
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+        // https://github.com/donavon/hook-flow
+
+        function UsernameForm() {
+            const usernameInputRef = React.useRef();
+            function handleSubmit(e) {
+                e.preventDefault();
+                // const userName = event.target.elements.usernameInput.value;
+                const userName = usernameInputRef.current.value;
+                console.log(userName);
+            }
+            return (
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="usernameInput">Username:</label>
+                        <input
+                            id="usernameInput"
+                            type="text"
+                            ref={usernameInputRef}
+                        />
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            )
+        }
+
+        ReactDOM.render(<UsernameForm />, document.getElementById('root'))
+    </script>
+</body>
